@@ -1,0 +1,11 @@
+-- CreateTable
+CREATE TABLE "TestModel" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "tesParam" INTEGER NOT NULL,
+    "testString" TEXT NOT NULL,
+    "tBigint" BIGINT NOT NULL,
+    "tBoolean" BOOLEAN NOT NULL,
+    "testLinkId" INTEGER NOT NULL,
+    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT "TestModel_testLinkId_fkey" FOREIGN KEY ("testLinkId") REFERENCES "Book" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
+);

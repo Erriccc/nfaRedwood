@@ -1,0 +1,135 @@
+"""
+Use to check whether or not a user is authenticated and is associated
+with an optional set of roles.
+"""
+directive @requireAuth(roles: [String]) on FIELD_DEFINITION
+
+"""Use to skip authentication checks and allow public access."""
+directive @skipAuth on FIELD_DEFINITION
+
+scalar BigInt
+
+type Book {
+  body: String!
+  createdAt: DateTime!
+  id: Int!
+  title: String!
+}
+
+input CreateBookInput {
+  body: String!
+  title: String!
+}
+
+input CreateNftInput {
+  clollected: Boolean!
+  name: String!
+  owner: String
+}
+
+input CreatePostInput {
+  body: String!
+  title: String!
+}
+
+input CreateUserExampleInput {
+  email: String!
+  name: String
+}
+
+scalar Date
+
+scalar DateTime
+
+scalar JSON
+
+scalar JSONObject
+
+type Mutation {
+  createBook(input: CreateBookInput!): Book!
+  createNft(input: CreateNftInput!): Nft!
+  createPost(input: CreatePostInput!): Post!
+  createUserExample(input: CreateUserExampleInput!): UserExample!
+  deleteBook(id: Int!): Book!
+  deleteNft(id: Int!): Nft!
+  deletePost(id: Int!): Post!
+  deleteUserExample(id: Int!): UserExample!
+  updateBook(id: Int!, input: UpdateBookInput!): Book!
+  updateNft(id: Int!, input: UpdateNftInput!): Nft!
+  updatePost(id: Int!, input: UpdatePostInput!): Post!
+  updateUserExample(id: Int!, input: UpdateUserExampleInput!): UserExample!
+}
+
+type Nft {
+  clollected: Boolean!
+  id: Int!
+  name: String!
+  owner: String
+}
+
+type Post {
+  body: String!
+  createdAt: DateTime!
+  id: Int!
+  title: String!
+}
+
+"""About the Redwood queries."""
+type Query {
+  book(id: Int!): Book
+  books: [Book!]!
+  nft(id: Int!): Nft
+  nfts: [Nft!]!
+  post(id: Int!): Post
+  posts: [Post!]!
+
+  """Fetches the Redwood root schema."""
+  redwood: Redwood
+  userExample(id: Int!): UserExample
+  userExamples: [UserExample!]!
+}
+
+"""
+The RedwoodJS Root Schema
+
+Defines details about RedwoodJS such as the current user and version information.
+"""
+type Redwood {
+  """The current user."""
+  currentUser: JSON
+
+  """The version of Prisma."""
+  prismaVersion: String
+
+  """The version of Redwood."""
+  version: String
+}
+
+scalar Time
+
+input UpdateBookInput {
+  body: String
+  title: String
+}
+
+input UpdateNftInput {
+  clollected: Boolean
+  name: String
+  owner: String
+}
+
+input UpdatePostInput {
+  body: String
+  title: String
+}
+
+input UpdateUserExampleInput {
+  email: String
+  name: String
+}
+
+type UserExample {
+  email: String!
+  id: Int!
+  name: String
+}

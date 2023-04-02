@@ -412,6 +412,7 @@ export const addRoutesToRouterTask = (routes, layout, setProps = {}) => {
 
 export const addScaffoldImport = () => {
   const appJsPath = getPaths().web.app
+  console.log(appJsPath,'this is the appJsPath console added by nfa')
   let appJsContents = readFile(appJsPath).toString()
 
   if (appJsContents.match('./scaffold.css')) {
